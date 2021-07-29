@@ -6,6 +6,7 @@ $password = $_ENV["DATABASE_PASSWORD"] ?: "viber";
 $dbname = $_ENV["DATABASE_NAME"] ?: "viber";
 $viber_token = $_ENV["VIBER_TOKEN"];
 
+
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
