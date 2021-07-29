@@ -39,25 +39,4 @@ print_r("test message");
 
 error_log(print_r($data, TRUE));
 
-// 	$url = 'https://chatapi.viber.com/pa/send_message';
-// 	$token= '4b3919526e6-79852873dd96ac';
-//
-//         $data['receiver']   = $Id;
-//         $data['sender']['name'] = 'MyIDViberBot';
-//         $data['type']   = 'text';
-//         $data['text']   = $Id;
-//
-//
-//         $options = array(
-//             'http' => array(
-//                 'header'  => "Content-type: application/x-www-form-urlencoded\r\nX-Viber-Auth-Token: ".$token."\r\n",
-//                 'method'  => 'POST',
-//                 'content' => json_encode($data)
-//             )
-//         );
-//         $context  = stream_context_create($options);
-//         $result = file_get_contents($url, false, $context);
-
-
-
 ?>
