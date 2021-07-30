@@ -4,6 +4,8 @@
 docker build . -t viber
 docker run --network host -e VIBER_TOKEN=token -e LIST_TOKEN=secret viber
 ```
+* `VIBER_TOKEN` - token for viber bot
+* `LIST_TOKEN` - secret for getting data from list.php
 
 Also set env:
 * `DATABASE_SERVER` - database host and port, default `127.0.0.1:3306`
