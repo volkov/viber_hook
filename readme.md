@@ -4,6 +4,8 @@
 docker build . -t viber
 docker run --network host -e VIBER_TOKEN=token -e LIST_TOKEN=secret viber
 ```
+
+## Env variables
 * `VIBER_TOKEN` - token for viber bot
 * `LIST_TOKEN` - secret for getting data from list.php
 
@@ -12,6 +14,11 @@ Also set env:
 * `DATABASE_USERNAME` - user, default `viber`
 * `DATABASE_PASSWORD` - password, default `viber`
 * `DATABASE_NAME` - db name, default `viber`
+
+##Mysql
+
+See [script](tables.sql).
+
 ## Register hook
 
 Change url in payload
