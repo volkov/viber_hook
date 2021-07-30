@@ -5,6 +5,11 @@ docker build . -t viber
 docker run --network host -e VIBER_TOKEN=token -e LIST_TOKEN=secret viber
 ```
 
+Also set env:
+* `DATABASE_SERVER` - database host and port, default `127.0.0.1:3306`
+* `DATABASE_USERNAME` - user, default `viber`
+* `DATABASE_PASSWORD` - password, default `viber`
+* `DATABASE_NAME` - db name, default `viber`
 ## Register hook
 
 Change url in payload

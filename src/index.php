@@ -1,31 +1,25 @@
 <?php 
 
-$servername = $_ENV["DATABASE_SERVER"] ?: "127.0.0.1:3306";
-$username = $_ENV["DATABASE_USERNAME"] ?: "viber";
-$password = $_ENV["DATABASE_PASSWORD"] ?: "viber";
-$dbname = $_ENV["DATABASE_NAME"] ?: "viber";
 $viber_token = $_ENV["VIBER_TOKEN"];
-
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-  error_log("connection error");
-  error_log($conn->connect_error);
-  die("Connection failed: " . $conn->connect_error);
-}
 
 $entityBody = file_get_contents('php://input');
 if (hash_hmac('sha256', $entityBody, $viber_token) != $_GET["sig"]) {
 	error_log("invalid sig");
+	http_response_code(403);
 	die("invalid sig");
 }
+$data=json_decode($entityBody, TRUE);
+error_log(print_r($data, TRUE));
 
-$data=json_decode($entityBody,true);
+$event_type=$data['event'];
+if ($event_type != 'message') {
+	error_log("got $event_type which is not message");
+	print_r("not messages ignored");
+	exit(0);
+}
 
-
-$MyEvent=$data['event'];
+require __DIR__ . '/mysqli.php';
+$conn = get_viber_mysql_connection();
 
 $stmt = $conn->prepare("INSERT INTO messages (text, sender_name, sender_id) VALUES (?, ?, ?)");
 $stmt->bind_param("sss", $message_text, $sender_name, $sender_id);
@@ -36,8 +30,7 @@ $sender_name=$data['sender']['name'];
 
 $stmt->execute();
 $conn->close();
-print_r("test message");
-
-error_log(print_r($data, TRUE));
+error_log("message saved");
+print_r("message saved");
 
 ?>
