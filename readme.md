@@ -15,7 +15,7 @@ Also set env:
 * `DATABASE_PASSWORD` - password, default `viber`
 * `DATABASE_NAME` - db name, default `viber`
 
-##Mysql
+## Mysql
 
 See [script](tables.sql).
 
